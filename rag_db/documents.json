@@ -1,0 +1,87 @@
+[
+  {
+    "id": "outcome_Risk_of_Crack",
+    "text": "Forming outcome: Risk of Crack. This outcome occurs in 13658 simulations (42.6% of cases). Average process parameters when Risk of Crack occurs: MAT=0.985 (std=0.057), FC=0.100 (std=0.032), SHTK=0.9609mm (std=0.0083), BF=300047.6kN (std=129091.2). Max stress average: 90197.0 MPa. Average thinning: 0.4000.",
+    "category": "simulation_outcome"
+  },
+  {
+    "id": "outcome_Crack",
+    "text": "Forming outcome: Crack. This outcome occurs in 2376 simulations (7.4% of cases). Average process parameters when Crack occurs: MAT=1.087 (std=0.013), FC=0.100 (std=0.032), SHTK=0.9550mm (std=0.0050), BF=300000.0kN (std=129126.6). Max stress average: 90191.1 MPa. Average thinning: 0.4000.",
+    "category": "simulation_outcome"
+  },
+  {
+    "id": "outcome_Safe",
+    "text": "Forming outcome: Safe. This outcome occurs in 16037 simulations (50.0% of cases). Average process parameters when Safe occurs: MAT=1.000 (std=0.065), FC=0.100 (std=0.032), SHTK=0.9900mm (std=0.0082), BF=300000.0kN (std=129107.5). Max stress average: 90180.9 MPa. Average thinning: 0.4000.",
+    "category": "simulation_outcome"
+  },
+  {
+    "id": "param_BF",
+    "text": "Blank Holder Force (BF) effect on sheet metal forming: BF ranges from 100kN to 500kN. Higher BF values above 350kN significantly increase crack risk, especially when combined with thin sheet thickness below 0.975mm. Lower BF values below 200kN increase wrinkling risk when friction coefficient exceeds 0.12. BF is the most influential parameter for crack formation according to SHAP analysis. Optimal BF for safe forming is typically 180-280kN.",
+    "category": "parameter_effect"
+  },
+  {
+    "id": "param_SHTK",
+    "text": "Sheet Thickness (SHTK) effect on sheet metal forming: SHTK ranges from 0.95mm to 1.00mm. Thinner sheets below 0.97mm are at higher risk of cracking under high blank holder forces. SHTK is the second most influential parameter for crack prediction according to SHAP explainability analysis. Thicker sheets above 0.985mm provide better resistance to cracking. Thinning ratio increases significantly when BF exceeds 350kN with thin sheets.",
+    "category": "parameter_effect"
+  },
+  {
+    "id": "param_FC",
+    "text": "Friction Coefficient (FC) effect on sheet metal forming: FC ranges from 0.05 to 0.15. Higher friction above 0.12 combined with low blank holder force increases wrinkling tendency. FC has the least influence on crack formation compared to BF and SHTK. Optimal FC for balanced forming is typically 0.08-0.11. Lubrication directly controls FC in real manufacturing processes.",
+    "category": "parameter_effect"
+  },
+  {
+    "id": "param_MAT",
+    "text": "Material Hardening Factor (MAT) effect on sheet metal forming: MAT represents material scatter and ranges from 0.9 to 1.1. Higher MAT values above 1.05 combined with high BF increase crack risk. MAT accounts for batch-to-batch material variability in DP600 steel. MAT has moderate influence on forming outcomes. Stiffer materials (higher MAT) require adjusted process parameters.",
+    "category": "parameter_effect"
+  },
+  {
+    "id": "pso_optimal",
+    "text": "PSO Optimisation Results for safe sheet metal forming: Particle Swarm Optimisation was used to find process parameters that minimise crack and wrinkle probability while maximising safe outcome probability. MAT=1.0927 factor, FC=0.0883 coefficient, SHTK=0.9896 mm, BF=311557.9679 kN, These optimal parameters achieve safe forming probability above 80%. The optimisation used 50 particles over 100 iterations.",
+    "category": "optimisation"
+  },
+  {
+    "id": "shap_insights",
+    "text": "SHAP Explainability Analysis Results for sheet metal forming surrogate model: Feature importance ranking for crack formation prediction: 1. BF (Blank Holder Force) - strongest driver of crack formation, 2. SHTK (Sheet Thickness) - second strongest influence, 3. MAT (Material Hardening) - moderate influence, 4. FC (Friction Coefficient) - weakest influence on cracks. For wrinkling: FC and BF are most influential. SHAP analysis extends the original DDACS paper which identified XAI as future work in Section 5 of Heinzelmann et al. 2025.",
+    "category": "xai_insight"
+  },
+  {
+    "id": "ddacs_paper",
+    "text": "DDACS Benchmark Dataset paper by Heinzelmann et al. 2025: Title: A Comprehensive Benchmark Dataset for Sheet Metal Forming: Advancing Machine Learning and Surrogate Modelling in Process Simulations. Published in MATEC Web of Conferences, DOI: 10.1051/matecconf/202540801090. Dataset contains 32,076 FEM simulations of deep drawing of DP600 dual-phase steel. Three geometries: Concave, Convex, Rectangular. Drawing depth 30mm, part length 210mm. Simulations run in LS-DYNA software, each taking 1.5 hours on AMD EPYC 7742 CPU. Dataset available at DaRUS: DOI 10.18419/DARUS-4801, licensed CC BY 4.0. Paper uses DGCNN with late fusion for FLD classification. Future work identified: explainable AI and transfer learning.",
+    "category": "paper_knowledge"
+  },
+  {
+    "id": "geometry_1",
+    "text": "Geometry type 1 in deep drawing simulations: 10687 simulations with 1 geometry. Safe rate: 50.0%, Crack rate: 7.4%. Average BF: 300060.8kN, Average SHTK: 0.9750mm. Average max stress: 90200.8 MPa.",
+    "category": "geometry"
+  },
+  {
+    "id": "geometry_0",
+    "text": "Geometry type 0 in deep drawing simulations: 21384 simulations with 0 geometry. Safe rate: 50.0%, Crack rate: 7.4%. Average BF: 300000.0kN, Average SHTK: 0.9750mm. Average max stress: 90182.4 MPa.",
+    "category": "geometry"
+  },
+  {
+    "id": "surrogate_model",
+    "text": "A surrogate model is a machine learning model that learns to mimic an expensive simulation. Instead of running a costly FEM simulation that takes 1.5 hours per run, the surrogate model predicts the same result in milliseconds. It is trained on thousands of pre-computed simulation results. In this project, a PyTorch neural network is the surrogate that replaces LS-DYNA FEM simulations for sheet metal forming. Surrogate models are also called metamodels or emulators. They enable real-time process control and optimisation.",
+    "category": "concept"
+  },
+  {
+    "id": "fem_explanation",
+    "text": "Finite Element Method (FEM) is a numerical simulation technique used to predict how materials behave under physical forces. In sheet metal forming, FEM simulates how a metal sheet deforms when pressed by tools. LS-DYNA is the FEM software used in the DDACS dataset. Each simulation takes 1.5 hours on a high-performance CPU. FEM divides the sheet into thousands of small elements and calculates stress, strain and thickness at each element. The results show where cracks or wrinkles might form.",
+    "category": "concept"
+  },
+  {
+    "id": "pso_explanation",
+    "text": "Particle Swarm Optimisation (PSO) is an optimisation algorithm inspired by the behaviour of bird flocks. In this project PSO finds the optimal process parameters (MAT, FC, SHTK, BF) that minimise crack and wrinkle probability. 50 particles explore the parameter space over 100 iterations. Each particle represents a set of process parameters. Particles move towards the best solution found so far. PSO found optimal parameters: low BF around 100-200kN, maximum SHTK of 1.0mm give safest forming conditions.",
+    "category": "concept"
+  },
+  {
+    "id": "shap_explanation",
+    "text": "SHAP (SHapley Additive exPlanations) is an Explainable AI technique that explains why a machine learning model makes a specific prediction. SHAP values show how much each input feature contributed to the output. In this project SHAP explains which process parameters (MAT, FC, SHTK, BF) most influence forming outcomes like cracks and wrinkles. Higher absolute SHAP value means stronger influence on the prediction. BF (Blank Holder Force) has the highest SHAP value for crack prediction, meaning it is the most important parameter to control.",
+    "category": "concept"
+  },
+  {
+    "id": "deep_drawing",
+    "text": "Deep drawing is a sheet metal forming process where a flat metal sheet is pressed into a die to form a cup or box shape. The main components are: punch (pushes the sheet down), die (shapes the sheet), blank holder (holds the sheet edges). DP600 dual-phase steel is used in the DDACS dataset. Common defects are cracks (too much stretching) and wrinkles (too little blank holder force). The forming limit diagram (FLD) shows which combinations of strain are safe. Drawing depth in DDACS dataset is 30mm.",
+    "category": "concept"
+  }
+]
